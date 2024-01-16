@@ -14,7 +14,7 @@ rule add_annotation:
 rule oryzabase_anno:
     input:
         de_res = "results/deseq2_pipeline/{name}.deseq2_results.csv",
-        oryzabase_xlsx = "/home/panyq/Tools/onto-scripts/oryzabase-ontologies-2023-10-16.xlsx",
+        oryzabase_xlsx = config["oryzabase-xlsx"],
     output:
         enricher_xlsx = "results/os_anno/{name}/{name}.oryzabase-enricher.padj-{padj_th}.fc-{fc_th}.xlsx",
         enricher_rds = "results/os_anno/{name}/{name}.oryzabase-enricher.padj-{padj_th}.fc-{fc_th}.rds",

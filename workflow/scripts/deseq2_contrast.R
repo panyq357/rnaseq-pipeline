@@ -17,7 +17,7 @@ main <- function() {
 
     # Make coldata.
     sample_groups <- config$sample_groups[config$levels]
-    coldata <- as.data.frame(sample_groups) |>
+    coldata <- data.frame(sample_groups, check.names=F) |>
         tidyr::pivot_longer(cols=1:length(sample_groups), names_to="Group", values_to="Sample")
     coldata <- coldata[c("Sample", "Group")]
 
