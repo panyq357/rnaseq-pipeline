@@ -1,0 +1,22 @@
+include: "rules/reads2star.smk"
+include: "rules/sample_check.smk"
+include: "rules/de_analysis.smk"
+include: "rules/at_anno.smk"
+#include: "rules/os_anno.smk"
+
+rule all:
+    input:
+        "results/counts_to_tpm/tpm.csv",
+        "results/sample_check/sample_dist_heatmap.svg",
+
+        # de_analysis
+        expand("results/volcano_plot/{name}.padj-0.01.fc-1.5.volcano.pdf", name=config["levels"]),
+
+        # at_anno
+        expand("results/at_anno/{name}/{name}.deseq2_results_anno.csv", name=config["levels"]),
+        expand("results/at_anno/{name}/{name}.clusterProfiler.padj-0.01.fc-1.5.xlsx", name=config["levels"])
+
+        # os_anno
+#        expand("results/os_anno/{name}/{name}.oryzabase-enricher.padj-0.01.fc-1.5.xlsx", name=config["levels"]),
+#        expand("results/os_anno/{name}/{name}.kegg-enrich.padj-0.01.fc-1.5.csv", name=config["levels"])
+

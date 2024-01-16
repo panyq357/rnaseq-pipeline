@@ -1,0 +1,43 @@
+# description: config file for `reads2star.smk`.
+# author: panyq357
+# date: 2023-08-23
+
+star_index_dir: ../index/at/tair/results/star_index
+
+gtf: ../index/at/tair/results/gtf/at.araport11.make.gtf
+
+samples:
+  JA_WT_1:
+    R1: ../rawdata/SRR13791101_1.fastq.gz
+    R2: ../rawdata/SRR13791101_2.fastq.gz
+  JA_WT_2:
+    R1: ../rawdata/SRR13791102_1.fastq.gz
+    R2: ../rawdata/SRR13791102_2.fastq.gz
+  JA_WT_3:
+    R1: ../rawdata/SRR13791103_1.fastq.gz
+    R2: ../rawdata/SRR13791103_2.fastq.gz
+  MOCK_WT_1:
+    R1: ../rawdata/SRR13791104_1.fastq.gz
+    R2: ../rawdata/SRR13791104_2.fastq.gz
+  MOCK_WT_2:
+    R1: ../rawdata/SRR13791105_1.fastq.gz
+    R2: ../rawdata/SRR13791105_2.fastq.gz
+  MOCK_WT_3:
+    R1: ../rawdata/SRR13791106_1.fastq.gz
+    R2: ../rawdata/SRR13791106_2.fastq.gz
+  MOCK_lhp1_1:
+    R1: ../rawdata/SRR13791107_1.fastq.gz
+    R2: ../rawdata/SRR13791107_2.fastq.gz
+  MOCK_lhp1_2:
+    R1: ../rawdata/SRR13791108_1.fastq.gz
+    R2: ../rawdata/SRR13791108_2.fastq.gz
+  MOCK_lhp1_3:
+    R1: ../rawdata/SRR13791109_1.fastq.gz
+    R2: ../rawdata/SRR13791109_2.fastq.gz
+
+threads:  # threads setting for rules
+  fastp_pe: 4
+  fastp_se: 4
+  star_mapping_pe: 10
+  star_mapping_se: 10
+

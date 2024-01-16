@@ -1,0 +1,4 @@
+
+rap-anno: "../index/os/rap-db/rawdata/IRGSP-1.0_representative_annotation_2023-09-07.tsv.gz"
+oryzabase-xlsx: "/home/panyq/Tools/onto-scripts/oryzabase-ontologies-2024-01-04.xlsx"
+oryzabase-sheet: ["RAP_GO", "RAP_TO", "RAP_PO"]
