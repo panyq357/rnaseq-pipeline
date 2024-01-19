@@ -2,9 +2,9 @@
 # author: panyq357
 # date: 2023-08-23
 
-star_index_dir: ../index/at/tair/results/star_index
+star_index_dir: /home/panyq/Tools/index-scripts/at/tair/results/star_index
 
-gtf: ../index/at/tair/results/gtf/at.araport11.make.gtf
+gtf: /home/panyq/Tools/index-scripts/at/tair/results/gtf/at.araport11.make.gtf
 
 samples:
   JA_WT_1:
@@ -34,6 +34,8 @@ samples:
   MOCK_lhp1_3:
     R1: ../rawdata/SRR13791109_1.fastq.gz
     R2: ../rawdata/SRR13791109_2.fastq.gz
+
+star_params: "--limitBAMsortRAM 8589934592"
 
 threads:  # threads setting for rules
   fastp_pe: 4

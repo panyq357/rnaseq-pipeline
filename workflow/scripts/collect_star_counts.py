@@ -16,7 +16,7 @@ def main():
         tab = pd.read_table(tab_path, header=None, index_col=0)
         tab = tab.iloc[4:, ]  # Remove leading 4 statistical rows.
         sample_counts = tab.iloc[:, 0]
-        sample_counts.name = tab_path.name.split(".")[0]
+        sample_counts.name = tab_path.name.replace(".ReadsPerGene.out.tab", "")
         count_matrix = pd.concat([count_matrix, sample_counts], axis=1)
 
     count_matrix = count_matrix[sorted(count_matrix.columns)]

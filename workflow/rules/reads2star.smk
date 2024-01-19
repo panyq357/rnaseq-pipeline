@@ -68,7 +68,8 @@ rule star_mapping_pe:
         bai = "results/star_mapping/{sample_id}.Aligned.sortedByCoord.out.bam.bai",
         reads_per_gene = "results/star_mapping/{sample_id}.ReadsPerGene.out.tab"
     params:
-        out_prefix = "results/star_mapping/{sample_id}."
+        out_prefix = "results/star_mapping/{sample_id}.",
+        star_params = config["star_params"]
     log:
         "logs/star_mapping/{sample_id}.log"
     threads:
@@ -89,6 +90,7 @@ rule star_mapping_pe:
             --outSAMtype BAM SortedByCoordinate \
             --outSAMattributes Standard \
             --outSAMunmapped Within \
+            {params.star_params} \
             --quantMode GeneCounts 2>> {log} >> {log}
         samtools index {output.bam} 2>> {log}
         '''
@@ -102,7 +104,8 @@ rule star_mapping_se:
         bai = "results/star_mapping/{sample_id}.Aligned.sortedByCoord.out.bam.bai",
         reads_per_gene = "results/star_mapping/{sample_id}.ReadsPerGene.out.tab"
     params:
-        out_prefix = "results/star_mapping/{sample_id}."
+        out_prefix = "results/star_mapping/{sample_id}.",
+        star_params = config["star_params"]
     log:
         "logs/star_mapping/{sample_id}.log"
     threads:
@@ -122,6 +125,7 @@ rule star_mapping_se:
             --outSAMtype BAM SortedByCoordinate \
             --outSAMattributes Standard \
             --outSAMunmapped Within \
+            {params.star_params} \
             --quantMode GeneCounts 2>> {log} >> {log}
         samtools index {output.bam} 2>> {log}
         '''
