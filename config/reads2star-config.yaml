@@ -2,38 +2,38 @@
 # author: panyq357
 # date: 2023-08-23
 
-star_index_dir: /home/panyq/Tools/index-scripts/at/tair/results/star_index
+star_index_dir: /home/panyq/Tools/index-scripts/os/rap-db/results/star_index
 
-gtf: /home/panyq/Tools/index-scripts/at/tair/results/gtf/at.araport11.make.gtf
+gtf: /home/panyq/Tools/index-scripts/os/rap-db/results/gtf/os.rap-db.make.gtf
 
-samples:
-  JA_WT_1:
-    R1: ../rawdata/SRR13791101_1.fastq.gz
-    R2: ../rawdata/SRR13791101_2.fastq.gz
-  JA_WT_2:
-    R1: ../rawdata/SRR13791102_1.fastq.gz
-    R2: ../rawdata/SRR13791102_2.fastq.gz
-  JA_WT_3:
-    R1: ../rawdata/SRR13791103_1.fastq.gz
-    R2: ../rawdata/SRR13791103_2.fastq.gz
-  MOCK_WT_1:
-    R1: ../rawdata/SRR13791104_1.fastq.gz
-    R2: ../rawdata/SRR13791104_2.fastq.gz
-  MOCK_WT_2:
-    R1: ../rawdata/SRR13791105_1.fastq.gz
-    R2: ../rawdata/SRR13791105_2.fastq.gz
-  MOCK_WT_3:
-    R1: ../rawdata/SRR13791106_1.fastq.gz
-    R2: ../rawdata/SRR13791106_2.fastq.gz
-  MOCK_lhp1_1:
-    R1: ../rawdata/SRR13791107_1.fastq.gz
-    R2: ../rawdata/SRR13791107_2.fastq.gz
-  MOCK_lhp1_2:
-    R1: ../rawdata/SRR13791108_1.fastq.gz
-    R2: ../rawdata/SRR13791108_2.fastq.gz
-  MOCK_lhp1_3:
-    R1: ../rawdata/SRR13791109_1.fastq.gz
-    R2: ../rawdata/SRR13791109_2.fastq.gz
+samples:  # Note: There is a sample swapping when conducting experiments, WT1...CR1...OX1... are the correct sample names.
+  CR1:
+    R1: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-75/230909_A01047_0280_BHGWH5DSX7/V3B-5DAF-CR1_L1_191A91.R1.fastq.gz
+    R2: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-75/230909_A01047_0280_BHGWH5DSX7/V3B-5DAF-CR1_L1_191A91.R2.fastq.gz
+  CR2:
+    R1: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-75/230909_A01047_0280_BHGWH5DSX7/V3B-5DAF-CR2_L1_192A92.R1.fastq.gz
+    R2: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-75/230909_A01047_0280_BHGWH5DSX7/V3B-5DAF-CR2_L1_192A92.R2.fastq.gz
+  CR3:
+    R1: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-75/230909_A01047_0280_BHGWH5DSX7/V3B-5DAF-CR3_L1_193A93.R1.fastq.gz
+    R2: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-75/230909_A01047_0280_BHGWH5DSX7/V3B-5DAF-CR3_L1_193A93.R2.fastq.gz
+  WT1:
+    R1: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-75/230909_A01047_0280_BHGWH5DSX7/V3B-5DAF-WT1_L1_188A88.R1.fastq.gz
+    R2: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-75/230909_A01047_0280_BHGWH5DSX7/V3B-5DAF-WT1_L1_188A88.R2.fastq.gz
+  WT2:
+    R1: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-75/230909_A01047_0280_BHGWH5DSX7/V3B-5DAF-WT2_L1_189A89.R1.fastq.gz
+    R2: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-75/230909_A01047_0280_BHGWH5DSX7/V3B-5DAF-WT2_L1_189A89.R2.fastq.gz
+  WT3:
+    R1: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-75/230909_A01047_0280_BHGWH5DSX7/V3B-5DAF-WT3_L1_190A90.R1.fastq.gz
+    R2: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-75/230909_A01047_0280_BHGWH5DSX7/V3B-5DAF-WT3_L1_190A90.R2.fastq.gz
+  OX1:
+    R1: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-81/231010_A01047_0300_BHHTCTDSX7/V3B170-5DAF-1_L1_UDI030.R1.fastq.gz
+    R2: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-81/231010_A01047_0300_BHHTCTDSX7/V3B170-5DAF-1_L1_UDI030.R2.fastq.gz
+  OX2:
+    R1: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-81/231010_A01047_0300_BHHTCTDSX7/V3B170-5DAF-2_L1_UDI031.R1.fastq.gz
+    R2: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-81/231010_A01047_0300_BHHTCTDSX7/V3B170-5DAF-2_L1_UDI031.R2.fastq.gz
+  OX3:
+    R1: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-81/231010_A01047_0300_BHHTCTDSX7/V3B170-5DAF-3_L1_UDI032.R1.fastq.gz
+    R2: /mnt/d/LYHLabData/JWJ.2023-09-13.RNA-seq/ABFC20191058-81/231010_A01047_0300_BHHTCTDSX7/V3B170-5DAF-3_L1_UDI032.R2.fastq.gz
 
 star_params: "--limitBAMsortRAM 8589934592"
 

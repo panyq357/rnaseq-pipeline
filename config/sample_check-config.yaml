@@ -1,14 +1,14 @@
 sample_groups:
-  JA_WT:
-    - JA_WT_1
-    - JA_WT_2
-    - JA_WT_3
-  MOCK_WT:
-    - MOCK_WT_1
-    - MOCK_WT_2
-    - MOCK_WT_3
-  MOCK_lhp1:
-    - MOCK_lhp1_1
-    - MOCK_lhp1_2
-    - MOCK_lhp1_3
+  WT:
+    - WT1
+    - WT2
+    - WT3
+  CR:
+    - CR1
+    - CR2
+    - CR3
+  OX:
+    - OX1
+    - OX2
+    - OX3
   

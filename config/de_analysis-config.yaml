@@ -1,4 +1,4 @@
-levels:  # name: [sample_group_ck, sample_group_target]
-  MOCK_WT_vs_JA_WT: ["MOCK_WT", "JA_WT"]
-  MOCK_WT_vs_MOCK_lhp1: ["MOCK_WT", "MOCK_lhp1"]
+levels:  # name: [sample_group_control, sample_group_target]
+  WT_vs_CR: ["WT", "CR"]
+  WT_vs_OX: ["WT", "OX"]
 
