@@ -8,12 +8,10 @@ config <- list(
 
 main <- function() {
 
-    coldata <- data.frame(
-        Group=rep(names(config$sample_groups), sapply(config$sample_groups, length)),
-        Sample=unlist(config$sample_groups)
-    )
 
     counts <- read.csv(config$counts, row.names=1, check.names=F)
+
+    counts <- counts[unlist(config$sample_groups)]
 
     log2_cpm_plus_1 <- log2(apply(counts, 2, function(x) { x / sum(x) * 1E6 }) + 1)
 
