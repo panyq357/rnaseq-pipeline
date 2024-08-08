@@ -21,6 +21,7 @@ rule all:
         expand("results/os_anno/{name}/{name}.oryzabase-gsea.xlsx", name=config["levels"]),
         expand("results/os_anno/{name}/{name}.oryzabase-enricher.padj-0.01.fc-1.5.xlsx", name=config["levels"]),
 
-        expand("results/os_anno/{name}/{name}.kegg-gse.csv", name=config["levels"]),
-        expand("results/os_anno/{name}/{name}.kegg-enrich.padj-0.01.fc-1.5.xlsx", name=config["levels"])
+#        KEGG temporarily unavailable.
+#        expand("results/os_anno/{name}/{name}.kegg-gse.csv", name=config["levels"]),
+#        expand("results/os_anno/{name}/{name}.kegg-enrich.padj-0.01.fc-1.5.xlsx", name=config["levels"])
 

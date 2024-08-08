@@ -19,6 +19,8 @@ rule fastp_pe:
         config["threads"]["fastp_pe"]
     priority:
         60
+    resources:
+        io = 100
     shell:
         '''
         fastp \
@@ -46,6 +48,8 @@ rule fastp_se:
         config["threads"]["fastp_se"]
     priority:
         60
+    resources:
+        io = 100
     shell:
         '''
         fastp \
