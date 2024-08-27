@@ -1,0 +1,26 @@
+configfile: "config/sample_info.yaml"
+configfile: "config/index_and_anno.yaml"
+configfile: "config/software_setting.yaml"
+
+include: "rules/concat_fastq.smk"
+include: "rules/fastp.smk"
+include: "rules/star_mapping.smk"
+include: "rules/sample_check.smk"
+include: "rules/de_analysis.smk"
+include: "rules/os_anno.smk"
+
+rule all:
+    input:
+        # sample_check
+        "results/sample_check/sample_dist_heatmap.svg",
+
+        # de_analysis
+        expand("results/volcano_plot/{name}.padj-0.01.fc-1.volcano.pdf", name=config["levels"]),
+
+        # os_anno
+        expand("results/os_anno/{name}/{name}.deseq2_results_anno.csv", name=config["levels"]),
+        expand("results/os_anno/{name}/{name}.oryzabase-gsea.xlsx", name=config["levels"]),
+        expand("results/os_anno/{name}/{name}.oryzabase-enricher.padj-0.01.fc-1.xlsx", name=config["levels"]),
+        expand("results/os_anno/{name}/{name}.kegg-gsea.xlsx", name=config["levels"]),
+        expand("results/os_anno/{name}/{name}.kegg-enricher.padj-0.01.fc-1.xlsx", name=config["levels"])
+

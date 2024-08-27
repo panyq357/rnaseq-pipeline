@@ -1,0 +1,8 @@
+
+star_params: "--limitBAMsortRAM 8589934592"
+
+# Threads setting for rules.
+threads:
+  fastp: 4
+  star_mapping: 16
+

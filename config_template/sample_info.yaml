@@ -1,0 +1,34 @@
+
+# Raw FASTQ paths for each sample.
+# For pair-ended data, specify them with R1 and R2.
+# For single-ended data, specify only R1, with R2 key removed.
+
+samples:
+  sample1:
+    R1: "path/to/sample1.R1.fq.gz"
+    R2: "path/to/sample1.R2.fq.gz"
+  sample2:
+    R1: "path/to/sample2.single-ended.fq.gz"
+  sample3:
+    R1:
+      - "path/to/sample3.R1.part1.fq.gz"
+      - "path/to/sample3.R1.part2.fq.gz"
+    R2:
+      - "path/to/sample3.R2.part1.fq.gz"
+      - "path/to/sample3.R2.part2.fq.gz"
+
+# Sample groups.
+
+sample_groups:
+  control:
+    - sample1
+    - sample2
+  mutant:
+    - sample3
+    - sample4
+
+
+# Contrasts of groups for DE analysis.
+
+levels:
+  control_vs_mutant: ["control", "sample"]
