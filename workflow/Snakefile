@@ -8,6 +8,7 @@ include: "rules/star_mapping.smk"
 include: "rules/sample_check.smk"
 include: "rules/de_analysis.smk"
 include: "rules/os_anno.smk"
+include: "rules/at_anno.smk"
 
 rule all:
     input:

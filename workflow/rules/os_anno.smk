@@ -1,8 +1,8 @@
 
-rule add_annotation:
+rule os_add_annotation:
     input:
         de_res = "results/deseq2_pipeline/{name}.deseq2_results.csv",
-        anno = config["rap-anno"]
+        anno = config["rap_anno"]
     output:
         de_res_with_anno = "results/os_anno/{name}/{name}.deseq2_results_anno.csv"
     script:
@@ -40,25 +40,25 @@ rule oryzabase_enricher:
 rule os_kegg_gsea:
     input:
         de_res = "results/deseq2_pipeline/{name}.deseq2_results.csv",
-        pathway_to_gene = config["kegg"]["pathway_to_gene"],
-        pathway_to_description = config["kegg"]["pathway_to_description"]
+        pathway_to_gene = config["os_kegg"]["pathway_to_gene"],
+        pathway_to_description = config["os_kegg"]["pathway_to_description"]
     output:
         out_xlsx = "results/os_anno/{name}/{name}.kegg-gsea.xlsx",
         out_rds = "results/os_anno/{name}/{name}.kegg-gsea.rds",
         out_pdf = "results/os_anno/{name}/{name}.kegg-gsea.pdf"
     script:
-        "../scripts/os_kegg_gsea.R"
+        "../scripts/kegg_gsea.R"
 
 
 rule os_kegg_enricher:
     input:
         de_res = "results/deseq2_pipeline/{name}.deseq2_results.csv",
-        pathway_to_gene = config["kegg"]["pathway_to_gene"],
-        pathway_to_description = config["kegg"]["pathway_to_description"]
+        pathway_to_gene = config["os_kegg"]["pathway_to_gene"],
+        pathway_to_description = config["os_kegg"]["pathway_to_description"]
     output:
         out_xlsx = "results/os_anno/{name}/{name}.kegg-enricher.padj-{padj_th}.fc-{fc_th}.xlsx",
         out_rds = "results/os_anno/{name}/{name}.kegg-enricher.padj-{padj_th}.fc-{fc_th}.rds",
         out_pdf = "results/os_anno/{name}/{name}.kegg-enricher.padj-{padj_th}.fc-{fc_th}.pdf"
     script:
-        "../scripts/os_kegg_enricher.R"
+        "../scripts/kegg_enricher.R"
 
