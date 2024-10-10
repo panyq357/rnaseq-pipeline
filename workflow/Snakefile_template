@@ -25,3 +25,10 @@ rule all:
         expand("results/os_anno/{name}/{name}.kegg-gsea.xlsx", name=config["levels"]),
         expand("results/os_anno/{name}/{name}.kegg-enricher.padj-0.01.fc-1.xlsx", name=config["levels"])
 
+#        # at_anno
+#        expand("results/at_anno/{name}/{name}.deseq2_results_anno.csv", name=config["levels"]),
+#        expand("results/at_anno/{name}/{name}.at-gsea.xlsx", name=config["levels"]),
+#        expand("results/at_anno/{name}/{name}.at-enricher.padj-0.05.fc-1.5.xlsx", name=config["levels"]),
+#        expand("results/at_anno/{name}/{name}.kegg-gsea.xlsx", name=config["levels"]),
+#        expand("results/at_anno/{name}/{name}.kegg-enricher.padj-0.05.fc-1.5.xlsx", name=config["levels"])
+

@@ -4,3 +4,4 @@
 **/logs/*
 **/.RData
 **/.snakemake/*
+workflow/Snakefile

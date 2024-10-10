@@ -25,9 +25,9 @@ rule at_enricher:
         de_res = "results/deseq2_pipeline/{name}.deseq2_results.csv",
         at_go = config["at_go"],
     output:
-        out_xlsx = "results/at_anno/{name}/{name}.at-enricher.padj-{padj_th}.fc-{fc_th}.xlsx",
-        out_rds = "results/at_anno/{name}/{name}.at-enricher.padj-{padj_th}.fc-{fc_th}.rds",
-        out_pdf = "results/at_anno/{name}/{name}.at-enricher.padj-{padj_th}.fc-{fc_th}.pdf"
+        out_xlsx = "results/at_anno/{name}/{name}.at-enricher.{p_column}-{p_th}.fc-{fc_th}.xlsx",
+        out_rds = "results/at_anno/{name}/{name}.at-enricher.{p_column}-{p_th}.fc-{fc_th}.rds",
+        out_pdf = "results/at_anno/{name}/{name}.at-enricher.{p_column}-{p_th}.fc-{fc_th}.pdf"
     script:
         "../scripts/at_enricher.R"
 
@@ -51,9 +51,9 @@ rule at_kegg_enricher:
         pathway_to_gene = config["at_kegg"]["pathway_to_gene"],
         pathway_to_description = config["at_kegg"]["pathway_to_description"]
     output:
-        out_xlsx = "results/at_anno/{name}/{name}.kegg-enricher.padj-{padj_th}.fc-{fc_th}.xlsx",
-        out_rds = "results/at_anno/{name}/{name}.kegg-enricher.padj-{padj_th}.fc-{fc_th}.rds",
-        out_pdf = "results/at_anno/{name}/{name}.kegg-enricher.padj-{padj_th}.fc-{fc_th}.pdf"
+        out_xlsx = "results/at_anno/{name}/{name}.kegg-enricher.{p_column}-{p_th}.fc-{fc_th}.xlsx",
+        out_rds = "results/at_anno/{name}/{name}.kegg-enricher.{p_column}-{p_th}.fc-{fc_th}.rds",
+        out_pdf = "results/at_anno/{name}/{name}.kegg-enricher.{p_column}-{p_th}.fc-{fc_th}.pdf"
     script:
         "../scripts/kegg_enricher.R"
 

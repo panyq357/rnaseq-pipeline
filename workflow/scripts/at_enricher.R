@@ -4,7 +4,8 @@ library(clusterProfiler)
 config <- list(
     de_res = snakemake@input$de_res,
     at_go = snakemake@input$at_go,
-    padj_th = as.numeric(snakemake@wildcards$padj_th),
+    p_column = snakemake@wildcards$p_column,
+    p_th = as.numeric(snakemake@wildcards$p_th),
     abs_l2fc_th = log2(as.numeric(snakemake@wildcards$fc_th)),
     out_xlsx = snakemake@output$out_xlsx,
     out_rds = snakemake@output$out_rds,
@@ -20,9 +21,9 @@ main <- function(){
 
     universe <- row.names(de_res)
     gene <- list(
-        All  = de_res |> subset(padj < config$padj_th & abs(log2FoldChange) >  config$abs_l2fc_th) |> row.names(),
-        Up   = de_res |> subset(padj < config$padj_th & log2FoldChange      >  config$abs_l2fc_th) |> row.names(),
-        Down = de_res |> subset(padj < config$padj_th & log2FoldChange      < -config$abs_l2fc_th) |> row.names()
+        All  = de_res |> subset(de_res[[config$p_column]] < config$p_th & abs(log2FoldChange) >  config$abs_l2fc_th) |> row.names(),
+        Up   = de_res |> subset(de_res[[config$p_column]] < config$p_th & log2FoldChange      >  config$abs_l2fc_th) |> row.names(),
+        Down = de_res |> subset(de_res[[config$p_column]] < config$p_th & log2FoldChange      < -config$abs_l2fc_th) |> row.names()
     )
 
     at_enricher_res_list = lapply(gene, at_enricher, universe, at_go) |> unlist()

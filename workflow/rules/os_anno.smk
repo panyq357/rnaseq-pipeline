@@ -28,9 +28,9 @@ rule oryzabase_enricher:
         de_res = "results/deseq2_pipeline/{name}.deseq2_results.csv",
         oryzabase_xlsx = config["oryzabase"]["xlsx"],
     output:
-        out_xlsx = "results/os_anno/{name}/{name}.oryzabase-enricher.padj-{padj_th}.fc-{fc_th}.xlsx",
-        out_rds = "results/os_anno/{name}/{name}.oryzabase-enricher.padj-{padj_th}.fc-{fc_th}.rds",
-        out_pdf = "results/os_anno/{name}/{name}.oryzabase-enricher.padj-{padj_th}.fc-{fc_th}.pdf"
+        out_xlsx = "results/os_anno/{name}/{name}.oryzabase-enricher.{p_column}-{p_th}.fc-{fc_th}.xlsx",
+        out_rds = "results/os_anno/{name}/{name}.oryzabase-enricher.{p_column}-{p_th}.fc-{fc_th}.rds",
+        out_pdf = "results/os_anno/{name}/{name}.oryzabase-enricher.{p_column}-{p_th}.fc-{fc_th}.pdf"
     params:
         oryzabase_sheet = config["oryzabase"]["sheet"]
     script:
@@ -56,9 +56,9 @@ rule os_kegg_enricher:
         pathway_to_gene = config["os_kegg"]["pathway_to_gene"],
         pathway_to_description = config["os_kegg"]["pathway_to_description"]
     output:
-        out_xlsx = "results/os_anno/{name}/{name}.kegg-enricher.padj-{padj_th}.fc-{fc_th}.xlsx",
-        out_rds = "results/os_anno/{name}/{name}.kegg-enricher.padj-{padj_th}.fc-{fc_th}.rds",
-        out_pdf = "results/os_anno/{name}/{name}.kegg-enricher.padj-{padj_th}.fc-{fc_th}.pdf"
+        out_xlsx = "results/os_anno/{name}/{name}.kegg-enricher.{p_column}-{p_th}.fc-{fc_th}.xlsx",
+        out_rds = "results/os_anno/{name}/{name}.kegg-enricher.{p_column}-{p_th}.fc-{fc_th}.rds",
+        out_pdf = "results/os_anno/{name}/{name}.kegg-enricher.{p_column}-{p_th}.fc-{fc_th}.pdf"
     script:
         "../scripts/kegg_enricher.R"
 
