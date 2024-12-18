@@ -10,13 +10,11 @@ config <- list(
 
 main <- function() {
 
-    anno <- readr::read_tsv(config$anno)
-
-    anno$Model_name <- sub("([^.]+)\\..*", "\\1", anno$Model_name)
+    anno <- readxl::read_excel(config$anno)
 
     res <- read.csv(config$de_res, row.names=1, check.names=F)
 
-    res[c("Short_description", "Curator_summary")] <- anno[match(row.names(res), anno$Model_name), c("Short_description", "Curator_summary")]
+    res[c("Name", "Description")] <- anno[match(row.names(res), anno$Locus), c("Other Name(Type)", "Description")]
 
     write.csv(res, config$de_res_with_anno)
 }

@@ -8,7 +8,7 @@ gtf: "/home/panyq/Tools/index-scripts/os/rap-db/results/gtf/os.rap-db.make.gtf"
 rap_anno: "/home/panyq/Tools/index-scripts/os/rap-db/rawdata/IRGSP-1.0_representative_annotation_2023-09-07.tsv.gz"
 
 oryzabase:
-  xlsx: "/home/panyq/Tools/onto-scripts/results/oryzabase-ontologies.xlsx"
+  xlsx: "/home/panyq/Tools/anno-resources/results/oryzabase-ontologies.xlsx"
   sheet: ["RAP_GO", "RAP_TO", "RAP_PO"]
 
 os_kegg:
@@ -17,8 +17,8 @@ os_kegg:
 
 # Arabidopsis thaliana
 
-at_anno: "/home/panyq/Tools/index-scripts/at/tair/rawdata/TAIR10_functional_descriptions"
-at_go: "/home/panyq/Tools/onto-scripts/results/ath_go.csv.gz"
+at_anno: "/home/panyq/Tools/anno-resources/results/TAIR-gene-search-results.xlsx"
+at_go: "/home/panyq/Tools/anno-resources/results/ath_go.csv.gz"
 
 at_kegg:
   pathway_to_gene: "/home/panyq/Tools/index-scripts/at/kegg/results/ath_pathway/pathway_to_gene.tsv"

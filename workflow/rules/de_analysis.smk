@@ -25,9 +25,9 @@ rule deseq2:
 
 rule volcano_plot:
     input:
-        de_res = "results/deseq2_pipeline/{name}.deseq2_results.csv"
+        de_res = "{prefix}.csv"
     output:
-        plot = "results/volcano_plot/{name}.padj-{padj_th}.fc-{fc_th}.volcano.pdf"
+        plot = "{prefix}.{p_column}-{p_th}.fc-{fc_th}.volcano.pdf"
     script:
         "../scripts/volcano_plot.R"
 
