@@ -1,3 +1,4 @@
+skip_fastp: false
 
 star_params: "--limitBAMsortRAM 8589934592"
 

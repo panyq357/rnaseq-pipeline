@@ -5,16 +5,15 @@ A pipeline for RNA-seq analysis.
 First, run these.
 
 ```bash
-cp -r config_template config
 cp workflow/Snakefile_template workflow/Snakefile
+cp -r config_template config
 ```
 
-Then filling config files in `config` directory, and specify the outputs in `workflow/Snakefile`.
+Then filling config files in `config` directory.
 
-Finnaly, run this.
+Finally, run this.
 
 ```bash
 snakemake --cores 20 --resources io=100
 ```
-
 

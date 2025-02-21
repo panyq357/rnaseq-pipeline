@@ -7,12 +7,11 @@ ruleorder: star_mapping_pe > star_mapping_se
 
 rule star_mapping_pe:
     input:
-        r1_fastp = "resources/fastp/{sample_id}.fastp.R1.fastq.gz",
-        r2_fastp = "resources/fastp/{sample_id}.fastp.R2.fastq.gz",
+        r1 = "resources/cat/{sample_id}.R1.fastq.gz" if config["skip_fastp"] else "resources/fastp/{sample_id}.fastp.R1.fastq.gz",
+        r2 = "resources/cat/{sample_id}.R2.fastq.gz" if config["skip_fastp"] else "resources/fastp/{sample_id}.fastp.R2.fastq.gz",
         star_index_dir = config["star_index_dir"]
     output:
         bam = "results/star_mapping/{sample_id}.Aligned.sortedByCoord.out.bam",
-        bai = "results/star_mapping/{sample_id}.Aligned.sortedByCoord.out.bam.bai",
         reads_per_gene = "results/star_mapping/{sample_id}.ReadsPerGene.out.tab"
     params:
         out_prefix = "results/star_mapping/{sample_id}.",
@@ -29,9 +28,7 @@ rule star_mapping_pe:
             --runThreadN {threads} \
             --genomeDir {input.star_index_dir} \
             --readFilesCommand zcat \
-            --readFilesIn \
-                {input.r1_fastp} \
-                {input.r2_fastp} \
+            --readFilesIn {input.r1} {input.r2} \
             --outFileNamePrefix {params.out_prefix} \
             --outBAMsortingThreadN {threads} \
             --outSAMtype BAM SortedByCoordinate \
@@ -39,16 +36,14 @@ rule star_mapping_pe:
             --outSAMunmapped Within \
             {params.star_params} \
             --quantMode GeneCounts 2>> {log} >> {log}
-        samtools index {output.bam} 2>> {log}
         '''
 
 rule star_mapping_se:
     input:
-        r1_fastp = "resources/fastp/{sample_id}.fastp.R1.fastq.gz",
+        se = "resources/cat/{sample_id}.R1.fastq.gz" if config["skip_fastp"] else "resources/fastp/{sample_id}.fastp.fastq.gz",
         star_index_dir = config["star_index_dir"]
     output:
         bam = "results/star_mapping/{sample_id}.Aligned.sortedByCoord.out.bam",
-        bai = "results/star_mapping/{sample_id}.Aligned.sortedByCoord.out.bam.bai",
         reads_per_gene = "results/star_mapping/{sample_id}.ReadsPerGene.out.tab"
     params:
         out_prefix = "results/star_mapping/{sample_id}.",
@@ -65,8 +60,7 @@ rule star_mapping_se:
             --runThreadN {threads} \
             --genomeDir {input.star_index_dir} \
             --readFilesCommand zcat \
-            --readFilesIn \
-                {input.r1_fastp} \
+            --readFilesIn {input.se} \
             --outFileNamePrefix {params.out_prefix} \
             --outBAMsortingThreadN {threads} \
             --outSAMtype BAM SortedByCoordinate \
@@ -74,6 +68,5 @@ rule star_mapping_se:
             --outSAMunmapped Within \
             {params.star_params} \
             --quantMode GeneCounts 2>> {log} >> {log}
-        samtools index {output.bam} 2>> {log}
         '''
 

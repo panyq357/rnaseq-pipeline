@@ -15,19 +15,13 @@ rule all:
         # sample_check
         "results/sample_check/sample_dist_heatmap.svg",
 
+        # de_analysis
+        expand("results/volcano_plot/{name}.padj-0.01.fc-1.2.volcano.pdf", name=config["levels"]),
+
         # os_anno
-        expand("results/at_anno/{name}/{name}.deseq2_results_anno.padj-0.05.fc-1.2.volcano.pdf", name=config["levels"]),
         expand("results/os_anno/{name}/{name}.deseq2_results_anno.csv", name=config["levels"]),
         expand("results/os_anno/{name}/{name}.oryzabase-gsea.xlsx", name=config["levels"]),
-        expand("results/os_anno/{name}/{name}.oryzabase-enricher.padj-0.05.fc-1.2.xlsx", name=config["levels"]),
+        expand("results/os_anno/{name}/{name}.oryzabase-enricher.padj-0.01.fc-1.5.xlsx", name=config["levels"]),
         expand("results/os_anno/{name}/{name}.kegg-gsea.xlsx", name=config["levels"]),
-        expand("results/os_anno/{name}/{name}.kegg-enricher.padj-0.05.fc-1.2.xlsx", name=config["levels"])
-
-#        # at_anno
-#        expand("results/at_anno/{name}/{name}.deseq2_results_anno.padj-0.05.fc-1.2.volcano.pdf", name=config["levels"]),
-#        expand("results/at_anno/{name}/{name}.deseq2_results_anno.csv", name=config["levels"]),
-#        expand("results/at_anno/{name}/{name}.at-gsea.xlsx", name=config["levels"]),
-#        expand("results/at_anno/{name}/{name}.at-enricher.padj-0.05.fc-1.2.xlsx", name=config["levels"]),
-#        expand("results/at_anno/{name}/{name}.kegg-gsea.xlsx", name=config["levels"]),
-#        expand("results/at_anno/{name}/{name}.kegg-enricher.padj-0.05.fc-1.2.xlsx", name=config["levels"])
+        expand("results/os_anno/{name}/{name}.kegg-enricher.padj-0.01.fc-1.5.xlsx", name=config["levels"])
 
