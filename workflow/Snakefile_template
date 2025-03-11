@@ -16,7 +16,7 @@ rule all:
         "results/sample_check/sample_dist_heatmap.svg",
 
         # os_anno
-        expand("results/os_anno/{name}/{name}.deseq2_results_anno.padj-0.01.fc-1.2.volcano.pdf", name=config["levels"]),
+        expand("results/os_anno/{name}/{name}.deseq2_results_anno.padj-0.01.fc-1.2.volcano.svg", name=config["levels"]),
         expand("results/os_anno/{name}/{name}.deseq2_results_anno.csv", name=config["levels"]),
         expand("results/os_anno/{name}/{name}.oryzabase-gsea.xlsx", name=config["levels"]),
         expand("results/os_anno/{name}/{name}.oryzabase-enricher.padj-0.01.fc-1.2.xlsx", name=config["levels"]),

@@ -27,7 +27,6 @@ rule volcano_plot:
     input:
         de_res = "{prefix}.csv"
     output:
-        plot = "{prefix}.{p_column}-{p_th}.fc-{fc_th}.volcano.pdf"
+        plot = "{prefix}.{p_column}-{p_th}.fc-{fc_th}.volcano.svg"
     script:
         "../scripts/volcano_plot.R"
-
