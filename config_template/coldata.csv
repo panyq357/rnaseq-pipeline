@@ -1,0 +1,9 @@
+sample,genotype,treatment
+m-1,mutant,yes
+m-2,mutant,yes
+m-3,mutant,no
+m-4,mutant,no
+wt-1,wildtype,yes
+wt-2,wildtype,yes
+wt-3,wildtype,no
+wt-3,wildtype,no

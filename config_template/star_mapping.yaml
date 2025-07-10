@@ -1,0 +1,40 @@
+star:
+  index: "/home/panyq/Tools/index-scripts/os/rap-db/results/star_index"
+  mapping_threads: 10
+
+samtools:
+  sort:
+    threads: 10
+    mem_per_thread: "2G"
+
+
+star_mapping_jobs:
+  paired:  # results/read_mapping/paired/{name}.bam
+    wt-1:
+      r1: path/to/wt-1.r1.fq.gz
+      r2: path/to/wt-1.r2.fq.gz
+    wt-2:
+      r1: path/to/wt-2.r1.fq.gz
+      r2: path/to/wt-2.r2.fq.gz
+    wt-3:
+      r1: path/to/wt-3.r1.fq.gz
+      r2: path/to/wt-3.r2.fq.gz
+    wt-4:
+      r1: path/to/wt-4.r1.fq.gz
+      r2: path/to/wt-4.r2.fq.gz
+    m-1:
+      r1: path/to/m-1.r1.fq.gz
+      r2: path/to/m-1.r2.fq.gz
+    m-2:
+      r1: path/to/m-2.r1.fq.gz
+      r2: path/to/m-2.r2.fq.gz
+    m-3:
+      r1: path/to/m-3.r1.fq.gz
+      r2: path/to/m-3.r2.fq.gz
+    m-4:
+      r1: path/to/m-4.r1.fq.gz
+      r2: path/to/m-4.r2.fq.gz
+
+
+fastp:
+  skip: false  # if set to ture, fastp filtering steps will be skipped.

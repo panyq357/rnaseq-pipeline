@@ -1,0 +1,7 @@
+.snakemake/*
+config/*
+resources/*
+results/*
+logs/*
+workflow/Snakefile
+**/.RData
