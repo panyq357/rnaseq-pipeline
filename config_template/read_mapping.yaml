@@ -1,6 +1,9 @@
+mapper: "star"  # "star" or "salmon"
+
 star:
   index: "/home/panyq/Tools/index-scripts/os/rap-db/results/star_index"
   mapping_threads: 10
+
 
 samtools:
   sort:
@@ -8,7 +11,15 @@ samtools:
     mem_per_thread: "2G"
 
 
-star_mapping_jobs:
+salmon:
+  index: "/home/panyq/Tools/index-scripts/os/rap-db/results/salmon_index"
+  quant_threads: 8
+
+
+gtf: "/home/panyq/Tools/index-scripts/os/rap-db/results/gtf/os.rap-db.make.gtf"
+
+
+read_mapping_jobs:
   paired:  # results/read_mapping/paired/{name}.bam
     wt-1:
       r1: path/to/wt-1.r1.fq.gz

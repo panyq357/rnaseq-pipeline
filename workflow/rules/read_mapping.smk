@@ -6,7 +6,7 @@ All FASTQ will be gzipped and concated before sending to fastp.
 
 rule concat_fastq_paired:
     input:
-        lambda w: config["star_mapping_jobs"]["paired"][w.sample_id][w.end],
+        lambda w: config["read_mapping_jobs"]["paired"][w.sample_id][w.end],
     output:
         temp("resources/concat_fastq/paired/{sample_id}.{end}.fastq.gz"),
     log:
@@ -30,7 +30,7 @@ rule concat_fastq_paired:
 
 rule concat_fastq_single:
     input:
-        lambda w: config["star_mapping_jobs"]["single"][w.sample_id],
+        lambda w: config["read_mapping_jobs"]["single"][w.sample_id],
     output:
         temp("resources/concat_fastq/single/{sample_id}.single.fastq.gz"),
     log:
@@ -204,11 +204,11 @@ rule star_single:
 
 rule collect_star_counts:
     input:
-        [f"results/star_mapping/{end}/{sample_id}.ReadsPerGene.out.tab" for end in config["star_mapping_jobs"] for sample_id in config["star_mapping_jobs"][end]]
+        [f"results/star_mapping/{end}/{sample_id}.ReadsPerGene.out.tab" for end in config["read_mapping_jobs"] for sample_id in config["read_mapping_jobs"][end]]
     output:
-        "results/collect_star_counts.csv"
+        "results/star_mapping/collect_star_counts.csv"
     params:
-        sample_id_list = [sample_id for end in config["star_mapping_jobs"] for sample_id in config["star_mapping_jobs"][end]]
+        sample_id_list = [sample_id for end in config["read_mapping_jobs"] for sample_id in config["read_mapping_jobs"][end]]
     script:
         "../scripts/collect_star_counts.py"
 
@@ -234,11 +234,95 @@ rule flagstats:
         "samtools flagstats -@ {threads} {input.bam} > {output}"
 
 
-rule collect_all_flagstats:
+rule collect_star_flagstats:
     input:
-        [f"results/star_mapping/{end}/{name}.flagstats.txt" for end, names in config["star_mapping_jobs"].items() for name in names]
+        [f"results/star_mapping/{end}/{name}.flagstats.txt" for end, names in config["read_mapping_jobs"].items() for name in names]
     output:
-        "results/all_flagstats.tsv"
+        "results/star_mapping/flagstats.tsv"
     script:
-        "../scripts/collect_all_flagstats.R"
+        "../scripts/collect_flagstats.R"
 
+
+rule salmon_quant_paired:
+    input:
+        r1 = branch(
+            condition = config["fastp"]["skip"],
+            then = rules.fastp_paired.input.r1,
+            otherwise = rules.fastp_paired.output.r1
+        ),
+        r2 = branch(
+            condition = config["fastp"]["skip"],
+            then = rules.fastp_paired.input.r2,
+            otherwise = rules.fastp_paired.output.r2
+        ),
+        salmon_index = config["salmon"]["index"],
+    output:
+        "results/salmon_quant/paired/{sample_id}/quant.sf"
+    threads:
+        config["salmon"]["quant_threads"]
+    log:
+        "results/salmon_quant/paired/{sample_id}.log"
+    shell:
+        '''
+        salmon quant \
+            -i {input.salmon_index} \
+            -l A -p {threads} \
+            -1 {input.r1} \
+            -2 {input.r2} \
+            --seqBias --gcBias \
+            --validateMappings \
+            -o {output} 2>> {log}
+        '''
+
+
+rule salmon_quant_single:
+    input:
+        se = branch(
+            condition = config["fastp"]["skip"],
+            then = rules.fastp_single.input.se,
+            otherwise = rules.fastp_single.output.se
+        ),
+        salmon_index = config["salmon"]["index"],
+    output:
+        "results/salmon_quant/single/{sample_id}/quant.sf"
+    threads:
+        config["salmon"]["quant_threads"]
+    log:
+        "results/salmon_quant/single/{sample_id}.log"
+    shell:
+        '''
+        salmon quant \
+            -i {input.salmon_index} \
+            -l A -p {threads} \
+            -r {input.se} \
+            --seqBias --gcBias \
+            --validateMappings \
+            -o {output} 2>> {log}
+        '''
+
+rule collect_salmon_counts:
+    input:
+        quant_files = [f"results/salmon_quant/{end}/{sample_id}/quant.sf" for end in config["read_mapping_jobs"] for sample_id in config["read_mapping_jobs"][end]],
+        gtf = config["gtf"]
+    output:
+        "results/salmon_quant/collect_salmon_counts.csv"
+    params:
+        sample_id_list = [sample_id for end in config["read_mapping_jobs"] for sample_id in config["read_mapping_jobs"][end]]
+    script:
+        "../scripts/collect_salmon_counts.R"
+
+
+def get_counts(w):
+    if config["mapper"] == "star":
+        return rules.collect_star_counts.output
+    elif config["mapper"] == "salmon":
+        return rules.collect_salmon_counts.output
+
+
+rule link_counts:
+    input:
+        get_counts
+    output:
+        "results/counts.csv"
+    shell:
+        "ln -s $(realpath {input}) {output}"

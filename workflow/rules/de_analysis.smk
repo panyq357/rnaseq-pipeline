@@ -1,6 +1,6 @@
 rule deseq2_contrast:
     input:
-        counts = "results/collect_star_counts.csv",
+        counts = "results/counts.csv",
         coldata = config["coldata"],
         gene_info = config["gene_info"]
     output:
@@ -15,7 +15,7 @@ rule deseq2_contrast:
 
 rule deseq2_interaction:
     input:
-        counts = "results/collect_star_counts.csv",
+        counts = "results/counts.csv",
         coldata = config["coldata"],
         gene_info = config["gene_info"]
     output:

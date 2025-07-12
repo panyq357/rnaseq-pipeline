@@ -1,14 +1,13 @@
-configfile: "config/star_mapping.yaml"
+configfile: "config/read_mapping.yaml"
 configfile: "config/de_analysis.yaml"
 
 
-include: "rules/star_mapping.smk"
+include: "rules/read_mapping.smk"
 include: "rules/de_analysis.smk"
 
 
 rule all:
     input:
-        "results/collect_star_counts.csv",
-        "results/all_flagstats.tsv",
+        "results/counts.csv",
         "results/de_analysis/contrast/wt_vs_m.deseq2_contrast.padj-0.01.fc-1.2.enricher.xlsx",
         "results/de_analysis/contrast/wt_vs_m.deseq2_contrast.padj-0.01.fc-1.2.volcano.svg"
