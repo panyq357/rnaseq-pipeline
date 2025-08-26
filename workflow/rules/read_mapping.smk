@@ -16,16 +16,16 @@ rule concat_fastq_paired:
     run:
         # If only one gzipped file, soft link it to save IO.
         if len(input) == 1 and input[0].lower().endswith(".gz"):
-            shell("ln -s $(realpath {input[0]}) {output} 2> {log}")
+            shell('ln -s "$(realpath {input[0]:q})" {output} 2> {log}')
             return()
 
         for f in input:
             if f.endswith(".gz"):
-                shell("cat {f} >> {output} 2>> {log}")
+                shell("cat {f:q} >> {output} 2>> {log}")
             elif f.endswith(".bz2"):
-                shell("bzip2 -dc {f} 2>> {log} | gzip -c >> {output} 2>> {log}")
+                shell("bzip2 -dc {f:q} 2>> {log} | gzip -c >> {output} 2>> {log}")
             elif f.endswith(".fasta") or f.endswith(".fa"):
-                shell("gzip -c {f} >> {output} 2>> {log}")
+                shell("gzip -c {f:q} >> {output} 2>> {log}")
 
 
 rule concat_fastq_single:
@@ -40,16 +40,16 @@ rule concat_fastq_single:
     run:
         # If only one gzipped file, soft link it to save IO.
         if len(input) == 1 and input[0].lower().endswith(".gz"):
-            shell("ln -s $(realpath {input[0]}) {output} 2> {log}")
+            shell('ln -s "$(realpath {input[0]:q})" {output} 2> {log}')
             return()
 
         for f in input:
             if f.endswith(".gz"):
-                shell("cat {f} >> {output} 2>> {log}")
+                shell("cat {f:q} >> {output} 2>> {log}")
             elif f.endswith(".bz2"):
-                shell("bzip2 -dc {f} 2>> {log} | gzip -c >> {output} 2>> {log}")
+                shell("bzip2 -dc {f:q} 2>> {log} | gzip -c >> {output} 2>> {log}")
             elif f.endswith(".fasta") or f.endswith(".fa"):
-                shell("gzip -c {f} >> {output} 2>> {log}")
+                shell("gzip -c {f:q} >> {output} 2>> {log}")
 
 
 '''
@@ -156,6 +156,7 @@ rule star_paired:
             --outSAMtype BAM Unsorted \
             --outSAMunmapped Within \
             --quantMode GeneCounts \
+            --outTmpDir $(mktemp -u) \
             --outStd BAM_Unsorted 2>> {log} \
         | samtools fixmate -u -m - - 2>> {log} \
         | samtools sort -u -@ {params.sort_threads} -m {params.sort_mem_per_thread} 2>> {log} \
@@ -194,6 +195,7 @@ rule star_single:
             --outSAMtype BAM Unsorted \
             --outSAMunmapped Within \
             --quantMode GeneCounts \
+            --outTmpDir $(mktemp -u) \
             --outStd BAM_Unsorted 2>> {log} \
         | samtools fixmate -u -m - - 2>> {log} \
         | samtools sort -u -@ {params.sort_threads} -m {params.sort_mem_per_thread} 2>> {log} \
