@@ -1,5 +1,8 @@
 counts <- read.csv(snakemake@input[[1]], row.names = 1, check.names = FALSE)
 
+# NA may be introduced when combining different version of annotation.
+counts[is.na(counts)] <- 0
+
 log2_cpm_plus_1 <- log2(apply(counts, 2, function(x) { x / sum(x) * 1E6 }) + 1)
 
 log2_cpm_plus_1 <- log2_cpm_plus_1[order(rowSums(log2_cpm_plus_1), decreasing=T),][1:(nrow(log2_cpm_plus_1)*0.9),]

@@ -7,6 +7,10 @@ library(DESeq2)
 
 
 cts <- read.csv(snakemake@input$counts, check.names = F, row.names = 1)
+
+# NA may be introduced when combining different version of annotation.
+cts[is.na(cts)] <- 0
+
 coldata <- read.csv(snakemake@input$coldata, check.names = F)
 
 levels <- snakemake@params$levels
