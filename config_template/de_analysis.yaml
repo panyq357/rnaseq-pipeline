@@ -14,21 +14,23 @@ de_analysis_jobs:
 
 
 # A three column TSV with no header: | GeneID | Symbol | Description
-gene_info: "/home/panyq/Tools/index-scripts/os/rap-db/results/gene_info.tsv.gz"
+# Rice data can be downloaed from <https://rapdb.dna.affrc.go.jp/download/irgsp1.html> (Search `Gene annotation information in tab-delimited text format.` in page). Format it before use.
+gene_info: "/home/panyq/repos/index-scripts/os/rap-db/results/gene_info.tsv.gz"
 
 
 # term_to_gene: two column TSV with no header (e.g. "GO:0000028\tOs01g0100700\n")
 # term_to_description: two column TSV with no header (e.g. "GO:0000028\tribosomal small subunit assembly (BP)")
+# Rice data can be downloaded from <https://github.com/panyq357/anno-resources/releases/tag/2025-07-10>
 enrichment_data:
   osa_kegg:
-    term_to_gene: "/home/panyq/Tools/index-scripts/os/kegg/results/osa_pathway/pathway_to_rapdb.tsv"
-    term_to_description: "/home/panyq/Tools/index-scripts/os/kegg/results/osa_pathway/pathway_to_description.tsv"
+    term_to_gene: "/home/panyq/repos/index-scripts/os/kegg/results/osa_pathway/pathway_to_rapdb.tsv"
+    term_to_description: "/home/panyq/repos/index-scripts/os/kegg/results/osa_pathway/pathway_to_description.tsv"
   oryzabase_rap_go:
-    term_to_gene: "/home/panyq/Tools/anno-resources/results/oryzabase.RAP_GO.term_to_gene.tsv.gz"
-    term_to_description: "/home/panyq/Tools/anno-resources/results/oryzabase.RAP_GO.term_to_description.tsv.gz"
+    term_to_gene: "/home/panyq/repos/anno-resources/results/oryzabase.RAP_GO.term_to_gene.tsv.gz"
+    term_to_description: "/home/panyq/repos/anno-resources/results/oryzabase.RAP_GO.term_to_description.tsv.gz"
   oryzabase_rap_to:
-    term_to_gene: "/home/panyq/Tools/anno-resources/results/oryzabase.RAP_TO.term_to_gene.tsv.gz"
-    term_to_description: "/home/panyq/Tools/anno-resources/results/oryzabase.RAP_TO.term_to_description.tsv.gz"
+    term_to_gene: "/home/panyq/repos/anno-resources/results/oryzabase.RAP_TO.term_to_gene.tsv.gz"
+    term_to_description: "/home/panyq/repos/anno-resources/results/oryzabase.RAP_TO.term_to_description.tsv.gz"
   oryzabase_rap_po:
-    term_to_gene: "/home/panyq/Tools/anno-resources/results/oryzabase.RAP_PO.term_to_gene.tsv.gz"
-    term_to_description: "/home/panyq/Tools/anno-resources/results/oryzabase.RAP_PO.term_to_description.tsv.gz"
+    term_to_gene: "/home/panyq/repos/anno-resources/results/oryzabase.RAP_PO.term_to_gene.tsv.gz"
+    term_to_description: "/home/panyq/repos/anno-resources/results/oryzabase.RAP_PO.term_to_description.tsv.gz"

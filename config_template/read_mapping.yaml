@@ -1,7 +1,20 @@
 mapper: "star"  # "star" or "salmon"
 
+# Use following to create STAR index.
+#
+# STAR \
+#     --runThreadN 8 \
+#     --runMode genomeGenerate \
+#     --genomeDir path/to/output/star_index \
+#     --genomeFastaFiles path/to/ref.fa \
+#     --sjdbGTFfile path/to/annotation.gtf \
+#     --sjdbOverhang max(ReadLength)-1
+#
+# Rice genome and gtf can be downloaed from <https://rapdb.dna.affrc.go.jp/download/irgsp1.html> (Search Genome assemblies` and `Gene structure (only exon) information in GTF format.` in page).
+#
+#
 star:
-  index: "/home/panyq/Tools/index-scripts/os/rap-db/results/star_index"
+  index: "/home/panyq/repos/index-scripts/os/rap-db/results/star_index"
   mapping_threads: 10
 
 
@@ -11,12 +24,20 @@ samtools:
     mem_per_thread: "2G"
 
 
+# Use following to create salmon index.
+#
+# salmon index \
+#     -t path/to/ref.transcripts.fa \
+#     -i path/to/output/salmon_index
+#
+# Rice transcript data can be downloaded from <https://rapdb.dna.affrc.go.jp/download/irgsp1.html> (Search `Transcript sequences (CDS + UTRs) in FASTA format.` in page).
+#
 salmon:
-  index: "/home/panyq/Tools/index-scripts/os/rap-db/results/salmon_index"
+  index: "/home/panyq/repos/index-scripts/os/rap-db/results/salmon_index"
   quant_threads: 8
 
 
-gtf: "/home/panyq/Tools/index-scripts/os/rap-db/results/gtf/os.rap-db.make.gtf"
+gtf: "/home/panyq/repos/index-scripts/os/rap-db/results/gtf/os.rap-db.make.gtf"
 
 
 read_mapping_jobs:
