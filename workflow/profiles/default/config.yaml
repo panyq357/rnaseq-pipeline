@@ -1,0 +1,8 @@
+# Default options, loaded automatically by `snakemake`.
+# Keys are long CLI options without the leading `--`; CLI flags override these.
+cores: 20
+resources:
+  - io=100  # limits concurrent IO-heavy jobs (concat_fastq: 50, fastp: 100)
+printshellcmds: true
+rerun-incomplete: true
+keep-going: true

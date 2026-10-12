@@ -35,9 +35,7 @@ dds <- dds[rowSums(counts(dds)) >= 20,]
 # DESeq.
 dds <- DESeq(dds)
 
-# Use lfcShrink to get a better Log2FoldChange for downstream GSEA.
-# colnames(coef(dds))[2] looks like: "Group_mutent_vs_wildtype".
-res <- lfcShrink(dds, colnames(coef(dds))[2], type="apeglm")
+res <- results(dds)
 
 res_df <- data.frame(res, check.names=F)
 

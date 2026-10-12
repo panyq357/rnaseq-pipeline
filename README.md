@@ -39,5 +39,7 @@ Then filling config files in `config` directory.
 Finally, run this.
 
 ```bash
-snakemake --cores 20 --resources io=100
+snakemake
 ```
+
+Default options (`--cores 20 --resources io=100`, etc.) are set in `workflow/profiles/default/config.yaml`, which snakemake loads automatically. Flags given on the command line override them, e.g. `snakemake --cores 8`.
